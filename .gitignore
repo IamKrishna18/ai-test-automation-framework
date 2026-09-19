@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# Environment
+.env
+
+# Database
+*.db
+data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+frontend/dist/
+
+# Reports (generated) - Commented out so you can showcase them on GitHub!
+# reports/*.html
+# reports/*.csv
+# reports/*.json
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+
+# mypy
+.mypy_cache/
