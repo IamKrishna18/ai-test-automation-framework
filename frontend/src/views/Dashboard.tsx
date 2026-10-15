@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Play, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
@@ -38,10 +38,15 @@ export default function Dashboard() {
       <div className="bg-white shadow rounded-lg">
         <div className="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between items-center">
           <h3 className="text-lg leading-6 font-medium text-gray-900">Recent Test Runs</h3>
-          <Link to="/runs/new" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
-            <Play className="h-4 w-4 mr-2" />
-            New Run
-          </Link>
+          <div className="flex space-x-3">
+            <Link to="/runs/new?demo=true" className="inline-flex items-center px-3 py-2 border border-indigo-600 text-sm font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 transition shadow-sm">
+              <Play className="h-4 w-4 mr-1.5 text-indigo-600" />
+              Try 1-Click Demo
+            </Link>
+            <Link to="/runs/new" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 transition">
+              New Run
+            </Link>
+          </div>
         </div>
         <ul className="divide-y divide-gray-200">
           {runs.map((run) => (

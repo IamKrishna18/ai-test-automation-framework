@@ -13,6 +13,7 @@ Important:
     expected != actual, which could indicate a real API bug.
 """
 
+from typing import TYPE_CHECKING
 import uuid
 from datetime import datetime, timezone
 
@@ -20,6 +21,10 @@ from sqlalchemy import DateTime, Float, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
+
+if TYPE_CHECKING:
+    from app.models.test_case import TestCase
+    from app.models.test_run import TestRun
 
 
 def _generate_uuid() -> str:
@@ -34,6 +39,7 @@ class TestResult(Base):
     """Execution result for a single test case."""
 
     __tablename__ = "test_results"
+    __test__ = False
 
     id: Mapped[str] = mapped_column(
         String(36), primary_key=True, default=_generate_uuid

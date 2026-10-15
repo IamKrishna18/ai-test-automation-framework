@@ -5,6 +5,7 @@ import re
 from app.models.test_case import TestCase
 from app.services.spec_parser import ParsedSpec
 
+
 def validate_semantics(test_case: TestCase, spec: ParsedSpec) -> list[str]:
     """Validates that a test case makes sense given the API specification.
     
@@ -15,7 +16,7 @@ def validate_semantics(test_case: TestCase, spec: ParsedSpec) -> list[str]:
     Returns:
         A list of error strings. Empty list means semantically valid.
     """
-    errors = []
+    errors: list[str] = []
     
     if not spec or not spec.endpoints:
         # If spec parsing failed or is empty, we can't do semantic validation

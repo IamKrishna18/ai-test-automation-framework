@@ -1,6 +1,5 @@
 """Pydantic schemas for dashboard analytics."""
 
-from datetime import datetime
 
 from pydantic import BaseModel
 
@@ -15,6 +14,7 @@ class DashboardStats(BaseModel):
     """Aggregate statistics across all test runs."""
     total_runs: int = 0
     total_tests: int = 0
+    total_tests_generated: int = 0
     total_passed: int = 0
     total_failed: int = 0
     total_errors: int = 0
@@ -23,14 +23,16 @@ class DashboardStats(BaseModel):
     overall_pass_rate: float = 0.0
     recent_runs: list[dict] = []
     category_distribution: list[CategoryCount] = []
+    top_failing_endpoints: list[str] = []
 
 
 class TrendDataPoint(BaseModel):
     """A single data point for historical trend charts."""
     date: str
-    run_id: str
-    passed: int
-    failed: int
-    errors: int
-    validity_rate: float
-    pass_rate: float
+    run_id: str = ""
+    passed: int = 0
+    failed: int = 0
+    errors: int = 0
+    validity_rate: float = 0.0
+    pass_rate: float = 0.0
+    total_tests: int = 0

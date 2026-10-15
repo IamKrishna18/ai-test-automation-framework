@@ -3,13 +3,17 @@
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import PlainTextResponse, HTMLResponse
+from fastapi.responses import HTMLResponse, PlainTextResponse
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
-from app.repositories.run_repo import RunRepository, TestCaseRepository, TestResultRepository
 from app.reporters.csv_reporter import CsvReporter
 from app.reporters.html_reporter import HtmlReporter
+from app.repositories.run_repo import (
+    RunRepository,
+    TestCaseRepository,
+    TestResultRepository,
+)
 
 router = APIRouter(prefix="/api/reports", tags=["Reports"])
 
@@ -30,8 +34,8 @@ def download_report(run_id: str, format: str = "html", db: Session = Depends(get
     results = result_repo.get_results_for_run(run_id)
     
     if format.lower() == "csv":
-        reporter = CsvReporter()
-        content = reporter.generate(run, cases, results)
+        csv_reporter = CsvReporter()
+        content = csv_reporter.generate(run, cases, results)
         return PlainTextResponse(
             content=content,
             media_type="text/csv",
@@ -39,8 +43,8 @@ def download_report(run_id: str, format: str = "html", db: Session = Depends(get
         )
         
     elif format.lower() == "html":
-        reporter = HtmlReporter()
-        content = reporter.generate(run, cases, results)
+        html_reporter = HtmlReporter()
+        content = html_reporter.generate(run, cases, results)
         return HTMLResponse(
             content=content,
             headers={"Content-Disposition": f"attachment; filename=report_{run_id}.html"}

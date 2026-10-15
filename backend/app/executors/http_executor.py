@@ -6,7 +6,6 @@ Captures the raw response and timing, but does NOT evaluate pass/fail.
 
 import json
 import time
-from typing import Any
 
 import httpx
 from sqlalchemy.orm import Session
@@ -95,19 +94,19 @@ class HttpExecutor:
                     
                 result.status = "executed"  # Temporary status before evaluation
                 
-        except httpx.TimeoutException as e:
+        except httpx.TimeoutException:
             result.status = "error"
             result.error_message = f"Request timed out after {self.settings.default_request_timeout}s"
             logger.warning(f"Test {tc.id} timed out")
             
         except httpx.RequestError as e:
             result.status = "error"
-            result.error_message = f"Network error: {str(e)}"
+            result.error_message = f"Network error: {e!s}"
             logger.warning(f"Test {tc.id} network error: {e}")
             
         except Exception as e:
             result.status = "error"
-            result.error_message = f"Execution error: {str(e)}"
+            result.error_message = f"Execution error: {e!s}"
             logger.error(f"Test {tc.id} failed to execute: {e}")
             
         finally:

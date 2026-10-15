@@ -36,32 +36,26 @@ BASE_RETRY_DELAY = 2.0
 
 class LLMError(Exception):
     """Base exception for all LLM provider errors."""
-    pass
 
 
 class LLMAuthenticationError(LLMError):
     """API key is missing, invalid, or expired."""
-    pass
 
 
 class LLMRateLimitError(LLMError):
     """Rate limit exceeded. Transient — can be retried."""
-    pass
 
 
 class LLMConnectionError(LLMError):
     """Network error, timeout, or service unavailable. Transient."""
-    pass
 
 
 class LLMResponseError(LLMError):
     """LLM returned a response that could not be parsed."""
-    pass
 
 
 class LLMModelError(LLMError):
     """Requested model is not available or not found."""
-    pass
 
 
 # ---- Data Classes ----

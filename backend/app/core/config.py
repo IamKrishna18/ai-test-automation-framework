@@ -59,7 +59,7 @@ class Settings(BaseSettings):
         return path
 
 
-@lru_cache()
+@lru_cache
 def get_settings() -> Settings:
     """Return a cached Settings instance.
 

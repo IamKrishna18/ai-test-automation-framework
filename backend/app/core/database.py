@@ -23,7 +23,6 @@ from app.core.config import get_settings
 
 class Base(DeclarativeBase):
     """Base class for all ORM models."""
-    pass
 
 
 def _get_engine():

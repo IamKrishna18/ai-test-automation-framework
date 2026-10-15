@@ -5,7 +5,6 @@ validators, and executors to move a TestRun through its states.
 """
 
 import json
-from typing import Tuple
 
 from sqlalchemy.orm import Session
 
@@ -22,7 +21,7 @@ class RunService:
     def __init__(self, db: Session):
         self.db = db
 
-    def generate_tests_for_run(self, run_id: str) -> Tuple[int, int, int]:
+    def generate_tests_for_run(self, run_id: str) -> tuple[int, int, int]:
         """Generate test cases for a run using the LLM.
         
         Returns:

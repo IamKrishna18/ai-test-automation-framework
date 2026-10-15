@@ -3,7 +3,7 @@
 from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel, Field, HttpUrl
+from pydantic import BaseModel, Field
 
 
 class TestCategory(str, Enum):
@@ -22,6 +22,7 @@ class LLMProvider(str, Enum):
     """Supported LLM providers."""
     GEMINI = "gemini"
     OPENAI = "openai"
+    MOCK = "mock"
 
 
 class RunStatus(str, Enum):

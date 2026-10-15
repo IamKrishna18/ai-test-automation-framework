@@ -3,9 +3,10 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
-from app.models.test_run import TestRun
 from app.models.test_case import TestCase
 from app.models.test_result import TestResult
+from app.models.test_run import TestRun
+
 
 class BaseReporter(ABC):
     """Abstract base class for all report generators."""

@@ -1,8 +1,9 @@
 """Mock LLM Provider for demonstration purposes."""
 
 import json
+
 from app.providers.base_provider import BaseLLMProvider
-from app.schemas.test_case_schemas import GeneratedTestCase
+
 
 class MockProvider(BaseLLMProvider):
     """Returns hardcoded test cases without needing an API key."""

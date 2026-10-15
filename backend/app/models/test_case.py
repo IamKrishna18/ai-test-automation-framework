@@ -9,6 +9,7 @@ Important:
     The execution engine interprets these definitions to construct HTTP requests.
 """
 
+from typing import TYPE_CHECKING
 import uuid
 from datetime import datetime, timezone
 
@@ -16,6 +17,10 @@ from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
+
+if TYPE_CHECKING:
+    from app.models.test_run import TestRun
+    from app.models.test_result import TestResult
 
 
 def _generate_uuid() -> str:
@@ -30,6 +35,7 @@ class TestCase(Base):
     """A structured AI-generated test case definition."""
 
     __tablename__ = "test_cases"
+    __test__ = False
 
     id: Mapped[str] = mapped_column(
         String(36), primary_key=True, default=_generate_uuid

@@ -4,7 +4,6 @@ Uses the official google-genai SDK (not the deprecated google-generativeai).
 Configures structured JSON output using response_json_schema.
 """
 
-from typing import Any
 
 from google import genai
 from google.genai import types
@@ -16,7 +15,6 @@ from app.providers.base_provider import (
     LLMAuthenticationError,
     LLMConnectionError,
     LLMError,
-    LLMModelError,
     LLMRateLimitError,
 )
 from app.schemas.test_case_schemas import GeneratedTestCase

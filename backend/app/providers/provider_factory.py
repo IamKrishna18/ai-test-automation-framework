@@ -2,8 +2,8 @@
 
 from app.providers.base_provider import BaseLLMProvider
 from app.providers.gemini_provider import GeminiProvider
-from app.providers.openai_provider import OpenAIProvider
 from app.providers.mock_provider import MockProvider
+from app.providers.openai_provider import OpenAIProvider
 from app.schemas.run_schemas import LLMProvider
 
 

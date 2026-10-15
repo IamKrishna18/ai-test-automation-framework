@@ -8,6 +8,7 @@ Relationships:
     - One TestRun has many TestResults (denormalized for query efficiency)
 """
 
+from typing import TYPE_CHECKING
 import uuid
 from datetime import datetime, timezone
 
@@ -15,6 +16,10 @@ from sqlalchemy import DateTime, Float, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
+
+if TYPE_CHECKING:
+    from app.models.test_case import TestCase
+    from app.models.test_result import TestResult
 
 
 def _generate_uuid() -> str:

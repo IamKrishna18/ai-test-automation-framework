@@ -1,6 +1,41 @@
 # AI-Driven Test Automation & Evaluation Framework
 
+[![CI/CD Pipeline](https://github.com/IamKrishna18/ai-test-automation-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/IamKrishna18/ai-test-automation-framework/actions)
+![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12-blue?logo=python)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)
+
 A complete web-based platform that uses Large Language Models (LLMs) to automatically generate, validate, execute, and evaluate software tests from OpenAPI specifications.
+
+---
+
+## ⚡ Try It Out: Quick Demo Options (Zero API Key Needed!)
+
+Anyone evaluating or reviewing this repository can test the entire pipeline in **under 2 minutes** without setting up an OpenAI or Gemini account:
+
+### Option A — 1-Click Web UI Demo
+1. Open the Web Dashboard at `http://localhost:5173`.
+2. Click **"Try 1-Click Demo"** (or **"New Run" -> "Load 1-Click Demo Spec"**).
+3. The form automatically fills with the included **Sample Target API** specification and selects the **⚡ Mock / Demo Provider**.
+4. Click **Create Run** -> **Generate Tests** -> **Execute Tests**.
+5. Watch the framework validate against hallucinated routes, execute HTTP calls, and generate downloadable HTML & CSV reports!
+
+### Option B — 1-Command Terminal Demo
+Run the automated end-to-end demo script right from your shell:
+```bash
+python run_demo.py
+```
+*It initializes the database, creates a test run, generates structured tests, filters out hallucinated routes via semantic validation, fires HTTP requests, and saves a formatted HTML report to `reports/`.*
+
+### Option C — Run Automated Test Suite
+```bash
+# Run all 41 unit and validation tests
+export PYTHONPATH=backend
+pytest tests/ -v
+```
+
+---
 
 ## What it does
 

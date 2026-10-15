@@ -6,8 +6,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
-from app.schemas.dashboard_schemas import DashboardStats, TrendDataPoint
 from app.repositories.run_repo import TestResultRepository
+from app.schemas.dashboard_schemas import DashboardStats, TrendDataPoint
 
 router = APIRouter(prefix="/api/dashboard", tags=["Dashboard"])
 

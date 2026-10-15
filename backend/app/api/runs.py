@@ -8,6 +8,12 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.logging import get_logger
+from app.repositories.run_repo import (
+    RunRepository,
+    TestCaseRepository,
+    TestResultRepository,
+)
+from app.schemas.result_schemas import TestResultResponse
 from app.schemas.run_schemas import (
     CreateRunRequest,
     ExecuteRunResponse,
@@ -16,8 +22,6 @@ from app.schemas.run_schemas import (
     TestRunResponse,
 )
 from app.schemas.test_case_schemas import TestCaseResponse
-from app.schemas.result_schemas import TestResultResponse
-from app.repositories.run_repo import RunRepository, TestCaseRepository, TestResultRepository
 from app.services.orchestrator import OrchestratorService
 
 logger = get_logger(__name__)

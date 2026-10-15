@@ -3,8 +3,10 @@
 import json
 
 from pydantic import ValidationError
+
 from app.models.test_case import TestCase
 from app.schemas.test_case_schemas import GeneratedTestCase
+
 
 def validate_schema(test_case: TestCase) -> list[str]:
     """Validates that a TestCase ORM model contains structurally valid data.
@@ -18,7 +20,7 @@ def validate_schema(test_case: TestCase) -> list[str]:
     try:
         data = {
             "name": test_case.name,
-            "description": test_case.description,
+            "description": test_case.description or "",
             "category": test_case.category,
             "method": test_case.method,
             "endpoint": test_case.endpoint,
@@ -28,7 +30,7 @@ def validate_schema(test_case: TestCase) -> list[str]:
             "body": json.loads(test_case.body) if test_case.body else None,
             "expected_status": test_case.expected_status,
             "expected_fields": json.loads(test_case.expected_fields) if test_case.expected_fields else [],
-            "priority": test_case.priority,
+            "priority": test_case.priority or "medium",
         }
     except json.JSONDecodeError as e:
         return [f"Failed to decode JSON fields: {e}"]

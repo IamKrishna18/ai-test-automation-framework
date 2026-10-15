@@ -1,11 +1,10 @@
 """HTML report generator."""
 
-import os
-from jinja2 import Environment, BaseLoader, select_autoescape
+from jinja2 import BaseLoader, Environment, select_autoescape
 
-from app.models.test_run import TestRun
 from app.models.test_case import TestCase
 from app.models.test_result import TestResult
+from app.models.test_run import TestRun
 from app.reporters.base_reporter import BaseReporter
 
 # Simple inline template for the HTML report

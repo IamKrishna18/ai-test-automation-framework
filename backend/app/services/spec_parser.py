@@ -20,7 +20,7 @@ import json
 import logging
 from dataclasses import dataclass, field
 
-import yaml
+import yaml  # type: ignore[import-untyped]
 
 logger = logging.getLogger(__name__)
 
@@ -90,7 +90,6 @@ class ParsedSpec:
 
 class SpecParserError(Exception):
     """Raised when specification parsing fails."""
-    pass
 
 
 def parse_spec(raw_spec: str) -> ParsedSpec:

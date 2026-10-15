@@ -83,9 +83,9 @@ class GeneratedTestCase(BaseModel):
 class TestCaseResponse(BaseModel):
     """Response schema for a test case with its result."""
     id: str
-    run_id: str
+    run_id: str = ""
     name: str
-    description: str
+    description: str = ""
     category: str
     method: str
     endpoint: str
@@ -97,8 +97,8 @@ class TestCaseResponse(BaseModel):
     expected_fields: list[str] = []
     priority: str = "medium"
     validation_status: str
-    validation_errors: list[str] = []
-    created_at: datetime
+    validation_errors: list[str] | str | None = []
+    created_at: datetime | None = None
 
     # Result (populated if test has been executed)
     result_status: str | None = None

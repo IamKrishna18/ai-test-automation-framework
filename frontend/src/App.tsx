@@ -1,6 +1,5 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { Activity, LayoutDashboard, Settings } from 'lucide-react';
+import { Activity, LayoutDashboard } from 'lucide-react';
 
 // Placeholders for views we'll build
 import Dashboard from './views/Dashboard';

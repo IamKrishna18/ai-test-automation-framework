@@ -2,19 +2,18 @@
 
 Ties together generation, validation, and execution.
 """
-import asyncio
-from typing import Dict, Any
+from typing import Any
 
 from sqlalchemy.orm import Session
 
 from app.core.logging import get_logger
+from app.evaluators.result_evaluator import ResultEvaluator
+from app.executors.http_executor import HttpExecutor
 from app.repositories.run_repo import RunRepository, TestCaseRepository
 from app.services.run_service import RunService
-from app.executors.http_executor import HttpExecutor
-from app.evaluators.result_evaluator import ResultEvaluator
+from app.services.spec_parser import parse_spec
 from app.validators.schema_validator import validate_schema
 from app.validators.semantic_validator import validate_semantics
-from app.services.spec_parser import parse_spec
 
 logger = get_logger(__name__)
 
@@ -27,7 +26,7 @@ class OrchestratorService:
         self.case_repo = TestCaseRepository(db)
         self.run_service = RunService(db)
 
-    def generate_tests(self, run_id: str) -> Dict[str, Any]:
+    def generate_tests(self, run_id: str) -> dict[str, Any]:
         """Trigger AI test generation and run validation."""
         run = self.run_repo.get_run(run_id)
         if not run:
@@ -74,7 +73,7 @@ class OrchestratorService:
             self.run_repo.update_status(run_id, "failed", str(e))
             raise
 
-    async def execute_run(self, run_id: str) -> Dict[str, Any]:
+    async def execute_run(self, run_id: str) -> dict[str, Any]:
         """Execute all VALID tests for a run against the target API."""
         run = self.run_repo.get_run(run_id)
         if not run:

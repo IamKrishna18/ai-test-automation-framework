@@ -5,11 +5,10 @@ and determining pass/fail status.
 """
 
 import json
-from typing import List
 
+from app.core.logging import get_logger
 from app.models.test_case import TestCase
 from app.models.test_result import TestResult
-from app.core.logging import get_logger
 
 logger = get_logger(__name__)
 
@@ -33,7 +32,7 @@ class ResultEvaluator:
             
         logger.info(f"Evaluating result for test {tc.id}")
         
-        failures: List[str] = []
+        failures: list[str] = []
         
         # 1. Check status code
         if result.actual_status_code != tc.expected_status:

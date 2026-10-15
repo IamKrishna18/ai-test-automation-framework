@@ -1,7 +1,7 @@
 """Unit tests for the HTTP execution engine."""
 
 import json
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 import httpx
@@ -33,13 +33,14 @@ def sample_test_case():
 @patch("app.executors.http_executor.httpx.AsyncClient")
 async def test_execute_case_success(mock_client_class, mock_db_session, sample_test_case):
     # Setup mock response
-    mock_response = AsyncMock()
+    mock_response = MagicMock()
     mock_response.status_code = 201
     mock_response.headers = httpx.Headers({"Content-Type": "application/json"})
     mock_response.json.return_value = {"id": 1, "name": "Alice"}
+    mock_response.text = '{"id": 1, "name": "Alice"}'
     
     mock_client = mock_client_class.return_value.__aenter__.return_value
-    mock_client.build_request.return_value = AsyncMock()
+    mock_client.build_request.return_value = MagicMock()
     mock_client.send.return_value = mock_response
 
     executor = HttpExecutor(target_url="http://target", db=mock_db_session)
@@ -62,7 +63,8 @@ async def test_execute_case_success(mock_client_class, mock_db_session, sample_t
     # Verify result model
     assert result.status == "executed"
     assert result.actual_status_code == 201
-    assert "Content-Type" in json.loads(result.actual_headers)
+    headers_dict = {k.lower(): v for k, v in json.loads(result.actual_headers).items()}
+    assert "content-type" in headers_dict
     assert json.loads(result.actual_response_body) == {"id": 1, "name": "Alice"}
     assert result.response_time_ms is not None
 

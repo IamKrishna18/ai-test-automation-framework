@@ -4,10 +4,14 @@ Uses the official openai Python SDK.
 Configures structured JSON output using response_format={"type": "json_object"}.
 """
 
-from typing import Any
 
-import openai
-from openai import OpenAI, APIError, APIConnectionError, RateLimitError, AuthenticationError
+from openai import (
+    APIConnectionError,
+    APIError,
+    AuthenticationError,
+    OpenAI,
+    RateLimitError,
+)
 
 from app.core.config import get_settings
 from app.providers.base_provider import (

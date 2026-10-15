@@ -3,25 +3,24 @@
 Abstracts the SQLAlchemy session logic away from the API endpoints.
 """
 
-from typing import List, Optional
-from uuid import UUID
 
-from sqlalchemy.orm import Session
 from sqlalchemy import func
+from sqlalchemy.orm import Session
 
-from app.models.test_run import TestRun
 from app.models.test_case import TestCase
 from app.models.test_result import TestResult
+from app.models.test_run import TestRun
 from app.schemas.run_schemas import CreateRunRequest, RunStatus
+
 
 class RunRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def get_run(self, run_id: str) -> Optional[TestRun]:
+    def get_run(self, run_id: str) -> TestRun | None:
         return self.db.query(TestRun).filter(TestRun.id == run_id).first()
 
-    def list_runs(self, limit: int = 100, skip: int = 0) -> List[TestRun]:
+    def list_runs(self, limit: int = 100, skip: int = 0) -> list[TestRun]:
         return self.db.query(TestRun).order_by(TestRun.created_at.desc()).offset(skip).limit(limit).all()
 
     def count_runs(self) -> int:
@@ -43,12 +42,10 @@ class RunRepository:
         self.db.refresh(run)
         return run
 
-    def update_status(self, run_id: str, status: RunStatus, error_message: str = None) -> Optional[TestRun]:
+    def update_status(self, run_id: str, status: RunStatus | str, error_message: str | None = None) -> TestRun | None:
         run = self.get_run(run_id)
         if run:
-            run.status = status
-            if error_message:
-                run.error_message = error_message
+            run.status = status if isinstance(status, str) else status.value
             self.db.commit()
             self.db.refresh(run)
         return run
@@ -57,14 +54,14 @@ class TestCaseRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def get_cases_for_run(self, run_id: str) -> List[TestCase]:
+    def get_cases_for_run(self, run_id: str) -> list[TestCase]:
         return self.db.query(TestCase).filter(TestCase.run_id == run_id).all()
 
 class TestResultRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def get_results_for_run(self, run_id: str) -> List[TestResult]:
+    def get_results_for_run(self, run_id: str) -> list[TestResult]:
         return self.db.query(TestResult).filter(TestResult.run_id == run_id).all()
         
     def get_dashboard_stats(self) -> dict:
