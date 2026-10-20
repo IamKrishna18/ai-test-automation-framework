@@ -1,6 +1,8 @@
 # AI-Driven Test Automation & Evaluation Framework
 
 [![CI/CD Pipeline](https://github.com/IamKrishna18/ai-test-automation-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/IamKrishna18/ai-test-automation-framework/actions)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/IamKrishna18/ai-test-automation-framework)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/IamKrishna18/ai-test-automation-framework)
 ![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12-blue?logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
@@ -10,30 +12,45 @@ A complete web-based platform that uses Large Language Models (LLMs) to automati
 
 ---
 
-## ⚡ Try It Out: Quick Demo Options (Zero API Key Needed!)
+## 🎓 For Faculty & Evaluators: How to Test This Project
 
-Anyone evaluating or reviewing this repository can test the entire pipeline in **under 2 minutes** without setting up an OpenAI or Gemini account:
+You can test this project in **under 2 minutes** without setting up anything on your local machine:
 
-### Option A — 1-Click Web UI Demo
-1. Open the Web Dashboard at `http://localhost:5173`.
-2. Click **"Try 1-Click Demo"** (or **"New Run" -> "Load 1-Click Demo Spec"**).
-3. The form automatically fills with the included **Sample Target API** specification and selects the **⚡ Mock / Demo Provider**.
-4. Click **Create Run** -> **Generate Tests** -> **Execute Tests**.
-5. Watch the framework validate against hallucinated routes, execute HTTP calls, and generate downloadable HTML & CSV reports!
+### 🌟 Method 1: Instant 1-Click Cloud Run (GitHub Codespaces)
+Click the badge below to launch a full, pre-configured cloud environment directly in your browser:
 
-### Option B — 1-Command Terminal Demo
-Run the automated end-to-end demo script right from your shell:
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/IamKrishna18/ai-test-automation-framework)
+
+Once the Codespace opens:
+1. Run `python -m uvicorn backend.app.main:app --port 8000` (or `python run_demo.py`).
+2. GitHub will automatically show a popup to open the web dashboard in your browser.
+3. Click **"Try 1-Click Demo"** to generate and execute tests!
+
+---
+
+### ⚡ Method 2: 1-Command Terminal Evaluation
+If you have cloned the repository locally:
 ```bash
+# Runs the full generation, semantic validation, execution, and exports an HTML report
 python run_demo.py
 ```
-*It initializes the database, creates a test run, generates structured tests, filters out hallucinated routes via semantic validation, fires HTTP requests, and saves a formatted HTML report to `reports/`.*
 
-### Option C — Run Automated Test Suite
+---
+
+### 🧪 Method 3: Automated Test Suite (100% Pass)
 ```bash
-# Run all 41 unit and validation tests
 export PYTHONPATH=backend
 pytest tests/ -v
 ```
+
+---
+
+### 💻 Method 4: Local Web Dashboard
+1. Open the Web Dashboard at `http://localhost:5173`.
+2. Click **"Try 1-Click Demo"** (or **"New Run" -> "Load 1-Click Demo Spec"**).
+3. The form automatically fills with the included **Sample Target API** specification and selects the **⚡ Mock / Demo Provider** (zero API keys required).
+4. Click **Create Run** -> **Generate Tests** -> **Execute Tests**.
+5. Watch the framework validate against hallucinated routes, execute HTTP calls, and generate downloadable HTML & CSV reports!
 
 ---
 

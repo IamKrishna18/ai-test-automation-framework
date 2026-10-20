@@ -1,0 +1,12 @@
+﻿services:
+  - type: web
+    name: ai-test-automation-framework
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: DEFAULT_LLM_PROVIDER
+        value: mock
+      - key: GEMINI_API_KEY
+        sync: false

@@ -76,10 +76,39 @@ def create_app() -> FastAPI:
     app.include_router(dashboard_router)
     app.include_router(reports_router)
 
+    # Mount sample target API for unified demo and production deployments
+    try:
+        import os
+        import sys
+        root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        if root_dir not in sys.path:
+            sys.path.insert(0, root_dir)
+        from sample_target_api.app import app as target_app
+        app.mount("/sample-api", target_app)
+    except Exception as e:
+        logger.warning(f"Could not mount sample target API: {e}")
+
     @app.get("/health", tags=["health"])
     def health_check():
         """Simple health check endpoint."""
         return {"status": "healthy", "version": "0.1.0"}
+
+    # Serve built frontend static files if present (for single-container/production deployments)
+    frontend_dist = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist"))
+    if os.path.isdir(frontend_dist):
+        from fastapi.staticfiles import StaticFiles
+        from fastapi.responses import FileResponse
+
+        assets_dir = os.path.join(frontend_dist, "assets")
+        if os.path.isdir(assets_dir):
+            app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+        @app.get("/{full_path:path}", include_in_schema=False)
+        async def serve_spa(full_path: str):
+            file_path = os.path.join(frontend_dist, full_path)
+            if full_path and os.path.isfile(file_path):
+                return FileResponse(file_path)
+            return FileResponse(os.path.join(frontend_dist, "index.html"))
 
     return app
 

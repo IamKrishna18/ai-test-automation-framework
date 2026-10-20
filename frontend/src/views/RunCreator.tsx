@@ -78,8 +78,12 @@ export default function RunCreator() {
   const [demoLoaded, setDemoLoaded] = useState(false);
 
   const loadDemoSpec = () => {
-    setTargetUrl('http://localhost:8001');
-    setApiSpec(JSON.stringify(DEMO_SPEC, null, 2));
+    const isLocalVite = window.location.port === '5173';
+    const defaultTarget = isLocalVite ? 'http://localhost:8001' : `${window.location.origin}/sample-api`;
+
+    setTargetUrl(defaultTarget);
+    const spec = { ...DEMO_SPEC, servers: [{ url: defaultTarget }] };
+    setApiSpec(JSON.stringify(spec, null, 2));
     setProvider('mock');
     setModel('mock-standard');
     setTestCount(4);
