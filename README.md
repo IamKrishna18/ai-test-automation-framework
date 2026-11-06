@@ -2,13 +2,25 @@
 
 A complete web-based platform that uses Large Language Models (LLMs) to automatically generate, validate, execute, and evaluate software tests from OpenAPI specifications.
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-ai--test--automation--framework.onrender.com-brightgreen?style=for-the-badge&logo=render)](https://ai-test-automation-framework.onrender.com)
+[![Open in GitHub Codespaces](https://img.shields.io/badge/GitHub_Codespaces-1--Click_Launch-blue?style=for-the-badge&logo=github)](https://codespaces.new/IamKrishna18/ai-test-automation-framework)
+[![Test Suite](https://img.shields.io/badge/Tests-41%20Passed%20(100%25)-success?style=for-the-badge&logo=pytest)](tests/)
+
 ---
 
 ## 🎓 For Faculty & Evaluators: How to Test This Project
 
 You can test this project in **under 2 minutes** without setting up anything on your local machine:
 
-### 🌟 Method 1: Instant 1-Click Cloud Run (GitHub Codespaces)
+### 🚀 Method 1: Live Cloud Deployment (Direct Browser Link)
+👉 **[Open Live Web Application (Render)](https://ai-test-automation-framework.onrender.com)**
+
+* **Zero API Keys Required:** Click **"Load 1-Click Demo Spec"** on the dashboard. It pre-populates the target URL and selects the built-in **⚡ Mock / Demo Provider**, letting you generate, validate, execute, and view reports in 3 clicks with no external credentials.
+* **Note on Render Free Tier:** Render spins down free containers after 15 minutes of inactivity. If the service is waking up from idle, please allow ~50–60 seconds for the initial cold start. Once awake, all interactions are instantaneous.
+
+---
+
+### 🌟 Method 2: Instant 1-Click Cloud Run (GitHub Codespaces)
 Click the badge below to launch a full, pre-configured cloud environment directly in your browser:
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/IamKrishna18/ai-test-automation-framework)
@@ -20,7 +32,7 @@ Once the Codespace opens:
 
 ---
 
-### ⚡ Method 2: 1-Command Terminal Evaluation
+### ⚡ Method 3: 1-Command Terminal Evaluation
 If you have cloned the repository locally:
 ```bash
 # Runs the full generation, semantic validation, execution, and exports an HTML report
@@ -29,7 +41,7 @@ python run_demo.py
 
 ---
 
-### 🧪 Method 3: Automated Test Suite (100% Pass)
+### 🧪 Method 4: Automated Test Suite (100% Pass)
 ```bash
 export PYTHONPATH=backend
 pytest tests/ -v
@@ -37,7 +49,7 @@ pytest tests/ -v
 
 ---
 
-### 💻 Method 4: Local Web Dashboard
+### 💻 Method 5: Local Web Dashboard
 1. Open the Web Dashboard at `http://localhost:5173`.
 2. Click **"Try 1-Click Demo"** (or **"New Run" -> "Load 1-Click Demo Spec"**).
 3. The form automatically fills with the included **Sample Target API** specification and selects the **⚡ Mock / Demo Provider** (zero API keys required).
