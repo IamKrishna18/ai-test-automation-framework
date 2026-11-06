@@ -7,6 +7,8 @@ services:
     dockerfilePath: Dockerfile
     healthCheckPath: /health
     envVars:
+      - key: PORT
+        value: 10000
       - key: DEFAULT_LLM_PROVIDER
         value: mock
       - key: GEMINI_API_KEY
