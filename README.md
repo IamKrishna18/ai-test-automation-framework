@@ -1,12 +1,5 @@
 # AI-Driven Test Automation & Evaluation Framework
 
-[![CI/CD Pipeline](https://github.com/IamKrishna18/ai-test-automation-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/IamKrishna18/ai-test-automation-framework/actions)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/IamKrishna18/ai-test-automation-framework)
-![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12-blue?logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript)
-
 A complete web-based platform that uses Large Language Models (LLMs) to automatically generate, validate, execute, and evaluate software tests from OpenAPI specifications.
 
 ---
