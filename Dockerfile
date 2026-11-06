@@ -1,4 +1,4 @@
-﻿# ==========================================
+# ==========================================
 # Multi-stage Dockerfile for full-stack deployment
 # Stage 1: Build React Frontend
 # ==========================================
@@ -21,6 +21,9 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app/backend
+
+# Install system mime-support so Linux recognizes CSS, JS, SVG MIME types
+RUN apt-get update && apt-get install -y --no-install-recommends mime-support && rm -rf /var/lib/apt/lists/*
 
 # Install backend dependencies
 COPY backend/requirements.txt ./backend/

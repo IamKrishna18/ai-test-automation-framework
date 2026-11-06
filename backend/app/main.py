@@ -8,6 +8,13 @@ Usage:
 """
 
 from contextlib import asynccontextmanager
+import mimetypes
+
+# Ensure standard MIME types are registered for static assets across all operating systems
+mimetypes.add_type("text/css", ".css")
+mimetypes.add_type("application/javascript", ".js")
+mimetypes.add_type("image/svg+xml", ".svg")
+mimetypes.add_type("text/html", ".html")
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -107,8 +114,9 @@ def create_app() -> FastAPI:
         async def serve_spa(full_path: str):
             file_path = os.path.join(frontend_dist, full_path)
             if full_path and os.path.isfile(file_path):
-                return FileResponse(file_path)
-            return FileResponse(os.path.join(frontend_dist, "index.html"))
+                media_type, _ = mimetypes.guess_type(file_path)
+                return FileResponse(file_path, media_type=media_type)
+            return FileResponse(os.path.join(frontend_dist, "index.html"), media_type="text/html")
 
     return app
 

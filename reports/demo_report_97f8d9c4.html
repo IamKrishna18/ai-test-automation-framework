@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Run Report - 97f8d9c4-f732-4bee-96f4-b986809f4cbd</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1, h2 { color: #333; }
+        .summary { background: #f4f4f4; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .status-pass { color: green; font-weight: bold; }
+        .status-fail { color: red; font-weight: bold; }
+        .status-error { color: orange; font-weight: bold; }
+        .status-invalid { color: gray; }
+    </style>
+</head>
+<body>
+    <h1>Test Run Report</h1>
+    
+    <div class="summary">
+        <h2>Run Summary</h2>
+        <p><strong>Run ID:</strong> 97f8d9c4-f732-4bee-96f4-b986809f4cbd</p>
+        <p><strong>Target URL:</strong> http://localhost:8001</p>
+        <p><strong>Provider/Model:</strong> mock / mock-standard</p>
+        <p><strong>Status:</strong> completed</p>
+        <p><strong>Total Tests:</strong> 4 (2 valid, 2 invalid)</p>
+        <p><strong>Results:</strong> <span class="status-pass">0 Passed</span> | <span class="status-fail">0 Failed</span> | <span class="status-error">2 Errors</span></p>
+    </div>
+
+    <h2>Test Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Expected</th>
+                <th>Actual</th>
+                <th>Validation</th>
+                <th>Execution</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            
+            <tr>
+                <td>Create user with missing email</td>
+                <td>POST</td>
+                <td>/users</td>
+                <td>422</td>
+                <td>None</td>
+                <td>valid</td>
+                <td class="status-error">
+                    error
+                </td>
+                <td>
+                    
+                        Network error: All connection attempts failed
+                    
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td>Fetch non-existent user</td>
+                <td>GET</td>
+                <td>/users/9999</td>
+                <td>404</td>
+                <td>N/A</td>
+                <td>invalid</td>
+                <td class="status-invalid">
+                    Not Executed
+                </td>
+                <td>
+                    
+                        path_params.user_id: Input should be a valid string
+                    
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td>Create valid user</td>
+                <td>POST</td>
+                <td>/users</td>
+                <td>201</td>
+                <td>None</td>
+                <td>valid</td>
+                <td class="status-error">
+                    error
+                </td>
+                <td>
+                    
+                        Network error: All connection attempts failed
+                    
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td>Hallucinated endpoint test</td>
+                <td>GET</td>
+                <td>/users/search/invalid/endpoint</td>
+                <td>200</td>
+                <td>N/A</td>
+                <td>invalid</td>
+                <td class="status-invalid">
+                    Not Executed
+                </td>
+                <td>
+                    
+                        Endpoint &#39;/users/search/invalid/endpoint&#39; does not exist in API specification
+                    
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</body>
+</html>

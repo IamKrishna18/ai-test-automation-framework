@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
-dist/
+/dist/
 build/
 *.egg
 .venv/
@@ -29,7 +29,7 @@ Thumbs.db
 
 # Node
 node_modules/
-frontend/dist/
+# frontend/dist/  # Committed so production deployment & cloud evaluation have the UI out of the box
 
 # Reports (generated) - Commented out so you can showcase them on GitHub!
 # reports/*.html
