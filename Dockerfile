@@ -1,18 +1,6 @@
 # ==========================================
-# Multi-stage Dockerfile for full-stack deployment
-# Stage 1: Build React Frontend
-# ==========================================
-FROM node:20-alpine AS frontend-builder
-WORKDIR /app/frontend
-
-COPY frontend/package*.json ./
-RUN npm ci
-
-COPY frontend/ ./
-RUN npm run build
-
-# ==========================================
-# Stage 2: Python Backend + Built Static UI
+# Fast & Lightweight Production Dockerfile
+# Serves FastAPI backend + Pre-compiled React UI
 # ==========================================
 FROM python:3.11-slim
 WORKDIR /app
@@ -22,21 +10,18 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH=/app/backend
 
-# Install system mime-support so Linux recognizes CSS, JS, SVG MIME types
-RUN apt-get update && apt-get install -y --no-install-recommends mime-support && rm -rf /var/lib/apt/lists/*
-
 # Install backend dependencies
 COPY backend/requirements.txt ./backend/
 RUN pip install --no-cache-dir -r backend/requirements.txt
 
-# Copy backend, sample target API, and built frontend
+# Copy backend, sample target API, and pre-compiled frontend assets
 COPY backend/ ./backend/
 COPY sample_target_api/ ./sample_target_api/
-COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
+COPY frontend/dist/ ./frontend/dist/
 
-# Expose port (Render/Railway use $PORT environment variable)
+# Expose port (Render/Railway inject $PORT)
 ENV PORT=8000
 EXPOSE 8000
 
-# Start unified FastAPI server
-CMD ["sh", "-c", "uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port ${PORT:-8000}"]
+# Start unified FastAPI server using python -m uvicorn
+CMD ["sh", "-c", "python -m uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port ${PORT:-8000}"]

@@ -1,10 +1,11 @@
-﻿services:
+services:
   - type: web
     name: ai-test-automation-framework
     env: docker
     plan: free
     region: oregon
     dockerfilePath: Dockerfile
+    healthCheckPath: /health
     envVars:
       - key: DEFAULT_LLM_PROVIDER
         value: mock
